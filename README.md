@@ -51,32 +51,32 @@ metrics                 # Metrics to be used in the model
 ### Install the necessary dependencies
 1. Install PyTorch and Cuda on a new conda environment ([PyTorch Anaconda commands](https://pytorch.org/get-started/locally/)):
 ```sh
-$ conda create --name pytorch python=3.8
-$ conda activate pytorch
-$ conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
+ conda create --name pytorch python=3.8
+ conda activate pytorch
+ conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
 ```
 
 2. Install OpenCV:
 ```sh
-$ pip install opencv-python
-$ python -c "import cv2; print(cv2.__version__)"
+ pip install opencv-python
+ python -c "import cv2; print(cv2.__version__)"
 ```
 
 3. Install Numpy, Matplotlib and Tqdm:
 ```sh
-$ conda install -c conda-forge numpy matplotlib tqdm
+ conda install -c conda-forge numpy matplotlib tqdm
 ```
 
 4. Install Albumentations:
 ```sh
-$ pip install albumentations
+ pip install albumentations
 ```
 
 ### Download the dataset
 If you want to see the arguments that can be passed to download the dataset, run the following command:
 
 ```sh
-$ python dataset/download.py -h
+ python dataset/download.py -h
 ```
 
 1. Download the FaceForensics++ dataset:
@@ -87,9 +87,20 @@ python3 dataset/download.py data -c c40 -d DeepFakeDetection_original --server E
 ```
 > Using -c c40 we get the maximum compression to download them fastly.
 
+## Download the Pretrained Model 🔍
+
+This project uses a pretrained classifier model (`resnetinceptionv1_epoch_32.pth`) for inference. Make sure to download this file and place it in the `models/` directory.
+
+You can get the model file by running:
+
+```bash
+git lfs install
+git lfs pull --include="models/resnetinceptionv1_epoch_32.pth"
+```
+If you have not cloned the repo with git lfs, you can install Git LFS and then pull the file manually. Otherwise, you'll see a pointer file instead of the actual model weights, which will result in loading errors.
 ## Train the model 🛠
 ```sh
-$ python training.py
+ python training.py
 ```
 
 ## Roadmap
