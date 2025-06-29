@@ -139,4 +139,3 @@ data/
 /wandb
 
 # Model files
-*.pth
