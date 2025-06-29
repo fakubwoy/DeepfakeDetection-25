@@ -162,7 +162,7 @@ def main(args):
                 print('Please be patient, this may take a while (~40gb)')
                 suffix = ''
             else:
-            	suffix = 'info'
+                suffix = 'info'
             download_file(args.base_url + '/' + dataset_path,
                           out_file=join(output_path,
                                         'downloaded_videos{}.zip'.format(
@@ -177,19 +177,19 @@ def main(args):
 
         # Get filelists and video lenghts list from server
         if 'DeepFakeDetection' in dataset_path or 'actors' in dataset_path:
-        	filepaths = json.loads(urllib.request.urlopen(args.base_url + '/' +
+            filepaths = json.loads(urllib.request.urlopen(args.base_url + '/' +
                 DEEPFEAKES_DETECTION_URL).read().decode("utf-8"))
-        	if 'actors' in dataset_path:
-        		filelist = filepaths['actors']
-        	else:
-        		filelist = filepaths['DeepFakesDetection']
+            if 'actors' in dataset_path:
+                filelist = filepaths['actors']
+            else:
+                filelist = filepaths['DeepFakesDetection']
         elif 'original' in dataset_path:
             # Load filelist from server
             file_pairs = json.loads(urllib.request.urlopen(args.base_url + '/' +
                 FILELIST_URL).read().decode("utf-8"))
             filelist = []
             for pair in file_pairs:
-            	filelist += pair
+                filelist += pair
         else:
             # Load filelist from server
             file_pairs = json.loads(urllib.request.urlopen(args.base_url + '/' +
@@ -202,8 +202,8 @@ def main(args):
                     filelist.append('_'.join(pair[::-1]))
         # Maybe limit number of videos for download
         if num_videos is not None and num_videos > 0:
-        	print('Downloading the first {} videos'.format(num_videos))
-        	filelist = filelist[:num_videos]
+            print('Downloading the first {} videos'.format(num_videos))
+            filelist = filelist[:num_videos]
 
         # Server and local paths
         dataset_videos_url = args.base_url + '{}/{}/{}/'.format(
